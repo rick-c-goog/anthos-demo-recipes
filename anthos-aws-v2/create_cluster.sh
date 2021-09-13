@@ -18,11 +18,12 @@ gcloud alpha container aws clusters create $CLUSTER_NAME \
   --database-encryption-kms-key-arn=$DB_KMS_KEY_ARN \
   --iam-instance-profile=$CONTROL_PLANE_PROFILE \
   --instance-type=t3.medium \
-  --ssh-ec2-key-pair=$SSH_KEY_PAIR_NAME \
+  --ssh-ec2-key-pair=$SSH_PRIVATE_KEY \
   --main-volume-size=10 \
   --root-volume-size=10 \
   --role-arn=$API_ROLE_ARN \
   --role-session-name=ROLE_SESSION_NAME
+
 PROJECT_ID="$(gcloud config get-value project)"
 gcloud services enable gkeconnect.googleapis.com MEMBER="serviceAccount:$PROJECT_ID.svc.id.goog[gke-system/gke-multicloud-agent]"
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
