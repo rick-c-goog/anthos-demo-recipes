@@ -138,7 +138,10 @@ function create_api_role() {
             "autoscaling:DeleteTags",
             "autoscaling:DeleteAutoScalingGroup",
             "autoscaling:CreateOrUpdateTags",
-            "autoscaling:CreateAutoScalingGroup"
+            "autoscaling:CreateAutoScalingGroup",
+            "ec2:DescribeAccountAttributes",
+            "ec2:DescribeInternetGateways",
+            "iam:CreateServiceLinkedRole"
         ],
         "Resource": "*"
     }
