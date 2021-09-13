@@ -1,0 +1,13 @@
+# apply-spec.yaml
+
+applySpecVersion: 1
+spec:
+  configSync:
+    # Set to true to install and enable Config Sync
+    enabled: true
+   # sourceFormat: FORMAT
+    syncRepo: https://github.com/GoogleCloudPlatform/anthos-config-management-samples
+    syncBranch: main
+    secretType: none
+    #gcpServiceAccountEmail: EMAIL
+    policyDir: foo-corp

@@ -1,0 +1,40 @@
+1. manually change aws-resources.sh
+ export GCP_REGION update to:  export GCP_LOCATIOn
+2. export PUBLIC_SUBNET change to export PUBLIC_SUBNET_1
+
+2.2 Cluster version:
+invalid version: "1.20.10-gke.300", supported values are [1.19.10-gke.1000]
+
+Change --cluster-version=1.20.10-gke.300  to --cluster-version=1.19.10-gke.1000
+
+3. IAM permission for the main role, 
+export API_ROLE_ARN='arn:aws:iam::215064375027:role/rickruguichen-dev-api-role'
+
+Go to AWS console, update the IAM policy, 
+with more IAM permissions:
+ "ec2:DescribeAccountAttributes",
+ "ec2:DescribeInternetGateways"
+ "iam:CreateServiceLinkedRole"
+
+4. Problem:
+Cluster creation fails with "failed to reach kube-apiserver. Please re-run the prerequisites and ensure that (1) the GKE Connect API was enabled for your Google Cloud project and (2) there is an IAM binding for roles/gkehub.connect to the service account".
+Solution:
+This error occurs when you try to create a cluster before completing some of the prerequisite steps. See Initial Cluster Creation..
+
+To resolve this error, re-run the following commands to complete the prerequisites:
+
+$ PROJECT_ID="$(gcloud config get-value project)"
+$ gcloud services enable gkeconnect.googleapis.com
+$ MEMBER="serviceAccount:$PROJECT_ID.svc.id.goog[gke-system/gke-multicloud-agent]"
+$ gcloud projects add-iam-policy-binding "$PROJECT_ID" \
+    --member="$MEMBER" \
+    --role="roles/gkehub.connect"
+
+
+5. Create Nodepool
+error: NODEPOOL_SUBNET_1 can not be empty
+
+aws ec2 create-subnet     --availability-zone $AWS_ZONE_1     --vpc-id $VPC_ID     --cidr-block "10.0.4.0/24" //or any CIDR not in use
+
+aws ec2 associate-route-table     --route-table-id rtb-0f3b22c946617a877     --subnet-id $NODEPOOL_SUBNET_1  #route table should be private( with NAT gateway
+need to go to aws-resources.sh, export NODEPOOL_SUBNET_1=subnet-047669abee2db0e22
