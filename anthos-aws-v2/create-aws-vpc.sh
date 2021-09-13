@@ -171,7 +171,7 @@ function create_nodepool_subnet() {
     --availability-zone $AWS_ZONE_3 \
     --vpc-id $VPC_ID \
     --cidr-block "10.0.4.0/24" | jq -r '.Subnet.SubnetId' )
-
+  save_variable "NODEPOOL_SUBNET"
   aws ec2 associate-route-table \
     --route-table-id $PRIVATE_ROUTE_TABLE \
     --subnet-id $NODEPOOL_SUBNET
