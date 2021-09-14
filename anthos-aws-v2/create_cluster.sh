@@ -25,7 +25,8 @@ gcloud alpha container aws clusters create $CLUSTER_NAME \
   --role-session-name=ROLE_SESSION_NAME
 
 PROJECT_ID="$(gcloud config get-value project)"
-gcloud services enable gkeconnect.googleapis.com MEMBER="serviceAccount:$PROJECT_ID.svc.id.goog[gke-system/gke-multicloud-agent]"
+gcloud services enable gkeconnect.googleapis.com 
+MEMBER="serviceAccount:$PROJECT_ID.svc.id.goog[gke-system/gke-multicloud-agent]"
 gcloud projects add-iam-policy-binding "$PROJECT_ID" \
     --member="$MEMBER" \
     --role="roles/gkehub.connect"
