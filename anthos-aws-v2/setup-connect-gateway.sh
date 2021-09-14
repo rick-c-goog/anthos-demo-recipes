@@ -1,3 +1,5 @@
+#!/bin/bash
+
 set -o errexit
 set -o pipefail
 set -o nounset
@@ -46,5 +48,22 @@ subjects:
   name: connect-agent-sa
   namespace: gke-connect
 EOF
+
+ADMIN_KUBECONFIG=$HOME/admin_kubeconfig
 # Apply impersonation policy to the cluster.
-kubectl apply -f impersonate.yaml
+HTTPS_PROXY=http://127.0.0.1:8118 kubectl --kubeconfig=$ADMIN_KUBECONFIG apply -f impersonate.yaml
+
+cat <<EOF > admin-permission.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: gateway-cluster-admin
+subjects:
+- kind: User
+  name: ${USER_ACCOUNT}
+roleRef:
+  kind: ClusterRole
+  name: cluster-admin
+  apiGroup: rbac.authorization.k8s.io
+EOF
+HTTPS_PROXY=http://127.0.0.1:8118 kubectl --kubeconfig=$ADMIN_KUBECONFIG apply -f admin-permission.yaml
