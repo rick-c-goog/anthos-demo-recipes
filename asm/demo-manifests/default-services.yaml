@@ -1,0 +1,111 @@
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata: # kpt-merge: /accounts-db
+  name: accounts-db
+spec:
+  hosts:
+    - accounts-db
+  tcp:
+    - route:
+        - destination:
+            host: accounts-db
+            subset: v0-2-0
+# [END anthos-service-mesh_bank-of-anthos_virtualservice_accounts-db ]
+---
+# [START anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata: # kpt-merge: /accounts-db-destination
+  name: accounts-db-destination
+spec:
+  host: accounts-db
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+    - name: v0-2-0
+      labels:
+        version: v0.2.0
+        # [END anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
+---
+# [START anthos-service-mesh_bank-of-anthos_virtualservice_balancereader ]
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata: # kpt-merge: /balancereader
+  name: balancereader
+spec:
+  hosts:
+    - balancereader
+  http:
+    - route:
+        - destination:
+            host: balancereader
+            subset: v0-2-0
+# [END anthos-service-mesh_bank-of-anthos_virtualservice_balancereader ]
+---
+# [START anthos-service-mesh_bank-of-anthos_destinationrule_balancereader-destination ]
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata: # kpt-merge: /balancereader-destination
+  name: balancereader-destination
+spec:
+  host: balancereader
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+    - name: v0-2-0
+      labels:
+        version: v0.2.0
+        # [END anthos-service-mesh_bank-of-anthos_destinationrule_balancereader-destination ]
+---
+# [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+apiVersion: networking.istio.io/v1alpha3
+kind: VirtualService
+metadata: # kpt-merge: /frontend
+  name: frontend
+spec:
+  hosts:
+    - "*"
+  gateways:
+    - bank-of-anthos-gateway
+  http:
+    - match:
+        - uri:
+            prefix: /
+      route:
+        - destination:
+            host: frontend
+            subset: v0-2-0
+# [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
+---
+apiVersion: networking.istio.io/v1alpha3
+kind: Gateway
+metadata:
+  name: bank-of-anthos-gateway
+spec:
+  selector:
+    istio: ingressgateway
+  servers:
+  - port:
+      number: 80
+      name: http
+      protocol: HTTP
+    hosts:
+    - "*" 
+---
+# [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
+apiVersion: networking.istio.io/v1alpha3
+kind: DestinationRule
+metadata: # kpt-merge: /frontend-destination
+  name: frontend-destination
+spec:
+  host: frontend
+  trafficPolicy:
+    tls:
+      mode: ISTIO_MUTUAL
+  subsets:
+    - name: v0-2-0
+      labels:
+        version: v0.2.0
+        # [END anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
