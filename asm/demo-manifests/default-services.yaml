@@ -79,21 +79,6 @@ spec:
             subset: v0-2-0
 # [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
 ---
-apiVersion: networking.istio.io/v1alpha3
-kind: Gateway
-metadata:
-  name: bank-of-anthos-gateway
-spec:
-  selector:
-    istio: ingressgateway
-  servers:
-  - port:
-      number: 80
-      name: http
-      protocol: HTTP
-    hosts:
-    - "*" 
----
 # [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
 apiVersion: networking.istio.io/v1alpha3
 kind: DestinationRule
