@@ -24,6 +24,7 @@ spec:
     metadata:
       labels:
         app: frontend
+        version: v0.2.0
     spec:
       serviceAccountName: default
       terminationGracePeriodSeconds: 5

@@ -1,4 +1,4 @@
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata: # kpt-merge: /accounts-db
   name: accounts-db
@@ -13,7 +13,7 @@ spec:
 # [END anthos-service-mesh_bank-of-anthos_virtualservice_accounts-db ]
 ---
 # [START anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata: # kpt-merge: /accounts-db-destination
   name: accounts-db-destination
@@ -29,7 +29,7 @@ spec:
         # [END anthos-service-mesh_bank-of-anthos_destinationrule_accounts-db-destination ]
 ---
 # [START anthos-service-mesh_bank-of-anthos_virtualservice_balancereader ]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata: # kpt-merge: /balancereader
   name: balancereader
@@ -44,7 +44,7 @@ spec:
 # [END anthos-service-mesh_bank-of-anthos_virtualservice_balancereader ]
 ---
 # [START anthos-service-mesh_bank-of-anthos_destinationrule_balancereader-destination ]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata: # kpt-merge: /balancereader-destination
   name: balancereader-destination
@@ -60,10 +60,10 @@ spec:
         # [END anthos-service-mesh_bank-of-anthos_destinationrule_balancereader-destination ]
 ---
 # [START anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: VirtualService
 metadata: # kpt-merge: /frontend
-  name: frontend
+  name: frontend-ingress
 spec:
   hosts:
     - "*"
@@ -80,7 +80,7 @@ spec:
 # [END anthos-service-mesh_bank-of-anthos_virtualservice_frontend ]
 ---
 # [START anthos-service-mesh_bank-of-anthos_destinationrule_frontend-destination ]
-apiVersion: networking.istio.io/v1alpha3
+apiVersion: networking.istio.io/v1beta1
 kind: DestinationRule
 metadata: # kpt-merge: /frontend-destination
   name: frontend-destination

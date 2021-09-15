@@ -26,6 +26,7 @@ spec:
     metadata:
       labels:
         app: ledger-db
+        version: v0.2.0
     spec:
       serviceAccountName: default
       containers:
