@@ -1,0 +1,19 @@
+defaultService: global/backendServices/payment-service
+name: payment-url-map
+description: ''
+hostRules:
+- hosts:
+  - '*'
+  pathMatcher: matcher1
+
+pathMatchers:
+- name: matcher1
+  defaultService: global/backendServices/payment-service
+  routeRules:
+  - priority: 0
+    matchRules:
+    - prefixMatch: ''
+    routeAction:
+      weightedBackendServices:
+      - backendService: global/backendServices/payment-service
+        weight: 100
