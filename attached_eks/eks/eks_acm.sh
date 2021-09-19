@@ -84,4 +84,4 @@ kubectl --kubeconfig=kubeconfig_$EKS_CLUSTER create secret generic git-creds \
 kubectl --kubeconfig=kubeconfig_$EKS_CLUSTER apply -f configmanagement_$EKS_CLUSTER.yaml
 
 # Gatekeeper takes time to start, check that gatekeeper controller is ready
-is_deployment_ready kubeconfig_${EKS_CLUSTER} gatekeeper-system gatekeeper-controller-manager
+#is_deployment_ready kubeconfig_${EKS_CLUSTER} gatekeeper-system gatekeeper-controller-manager
