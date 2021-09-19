@@ -43,3 +43,8 @@ output "kubeconfig_filename" {
   description = "A kubernetes configuration to authenticate to this EKS cluster."
   value       = module.eks.kubeconfig_filename
 }
+
+output "cluster_oidc_issuer_url" {
+  description = "A kubernetes configuration to authenticate to this EKS cluster."
+  value       = module.eks.cluster_oidc_issuer_url
+}

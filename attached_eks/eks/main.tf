@@ -119,6 +119,7 @@ resource "null_resource" "exec_eks_kubeconfig" {
       PROJECT_ID = var.project_id
       EKS        = module.eks.cluster_id
       ENV        = var.env
+      OIDC_URL   = module.eks.cluster_oidc_issuer_url
     }
   }
 
