@@ -1,5 +1,6 @@
 export PROJECT_ID=$(gcloud config get-value project)
 export AWS_REGION=us-east-1
+export CLUSTER_NAME=attached-eks-test
 envsubst < "./terraform.tfvars.jsontemplate" >  "terraform.tfvars.json"
 set -e 
 echo "enter AWS mfa token:"

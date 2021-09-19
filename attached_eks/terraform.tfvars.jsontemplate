@@ -6,5 +6,6 @@
     "${AWS_REGION}a",
     "${AWS_REGION}b"
   ],
+  "eks_cluster_name", "${CLUSTER_NAME}"
   "USER" : "rickruguichen"
 }
