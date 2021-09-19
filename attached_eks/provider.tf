@@ -1,5 +1,5 @@
 provider "aws" {
-  version = "=2.70.0"
+  version = "3.54.0"
   region  = var.region
 
   # Prevent terraform from removing the tags AMC adds to shared

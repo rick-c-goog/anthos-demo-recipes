@@ -13,7 +13,7 @@ kubectl create secret generic git-creds \
 
 PROJECT_ID=$(gcloud config get-value project)
 gcloud beta container hub config-management apply \
-      --membership=anthos-aws-v2 \
+      --membership=$CLUSTER_NAME \
       --config=apply-spec.yaml \
       --project=$PROJECT_ID
 

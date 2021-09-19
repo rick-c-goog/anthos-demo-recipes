@@ -16,4 +16,7 @@ variable "eks_cluster_name" { default = "attached-eks" }
 
 variable "env" { default = "dev" }
 
+variable "region" { default = "us-east-1" }
 variable "config-repo" { default = "config" }
+
+variable "project_id" { default = "" }
