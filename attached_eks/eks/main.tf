@@ -111,7 +111,7 @@ module "eks" {
 }
 
 resource "null_resource" "exec_eks_kubeconfig" {
-  count=0
+  count=1
   provisioner "local-exec" {
     interpreter = ["bash", "-exc"]
     command     = "${path.module}/eks_kubeconfig.sh"
@@ -131,7 +131,7 @@ resource "null_resource" "exec_eks_kubeconfig" {
 }
 
 resource "null_resource" "exec_eks_acm" {
-  count=0
+  count=1
   provisioner "local-exec" {
     interpreter = ["bash", "-exc"]
     command     = "${path.module}/eks_acm.sh"
@@ -151,7 +151,7 @@ resource "null_resource" "exec_eks_acm" {
 }
 
 resource "null_resource" "exec_eks_lm" {
-  count=0
+  count=1
   provisioner "local-exec" {
     interpreter = ["bash", "-exc"]
     command     = "${path.module}/eks_lm.sh"

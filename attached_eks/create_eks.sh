@@ -6,4 +6,4 @@ echo "enter AWS mfa token:"
 read -n 6 -p "mfa token:" MFATOKEN
 source $HOME/aws-sts.sh $MFATOKEN
 terraform init
-terraform plan
+terraform  apply --auto-approve
