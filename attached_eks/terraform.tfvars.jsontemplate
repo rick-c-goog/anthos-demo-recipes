@@ -1,5 +1,9 @@
 
 {
   "project_id": "${PROJECT_ID}",
-  "region": "${AWS_REGION}"
+  "region": "${AWS_REGION}",
+  "azs": [
+    "${AWS_REGION}a",
+    "${AWS_REGION}b"
+  ]
 }
