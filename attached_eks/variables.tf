@@ -20,3 +20,5 @@ variable "region" { default = "us-east-1" }
 variable "config-repo" { default = "config" }
 
 variable "project_id" { default = "" }
+variable "USER" { default = "" }
+

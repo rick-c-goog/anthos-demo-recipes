@@ -22,5 +22,6 @@ module "eks" {
   project_id       = var.project_id
   env              = var.env
   repo_url         = "https://github.com/GoogleCloudPlatform/anthos-config-management-samples.git"
+  USER              = var.USER
 }
 

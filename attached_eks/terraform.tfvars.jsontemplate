@@ -5,5 +5,6 @@
   "azs": [
     "${AWS_REGION}a",
     "${AWS_REGION}b"
-  ]
+  ],
+  "USER" : "rickruguichen"
 }

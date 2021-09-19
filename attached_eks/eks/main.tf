@@ -167,3 +167,23 @@ resource "null_resource" "exec_eks_lm" {
     null_resource.exec_eks_kubeconfig,
   ]
 }
+
+resource "null_resource" "exec_eks_congateway" {
+  count=1
+  provisioner "local-exec" {
+    interpreter = ["bash", "-exc"]
+    command     = "${path.module}/eks_congateway.sh"
+    environment = {
+      PROJECT_ID = var.project_id
+      EKS        = module.eks.cluster_id
+      USER       = var.USER
+
+    }
+  }
+  triggers = {
+    script_sha1 = sha1(file("${path.module}/eks_lm.sh"))
+  }
+  depends_on = [
+    null_resource.exec_eks_kubeconfig,
+  ]
+}

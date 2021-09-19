@@ -88,3 +88,8 @@ variable "map_users" {
     },
   ]
 }
+
+variable "USER" {
+  type        = string
+  description = "hub user"
+}
