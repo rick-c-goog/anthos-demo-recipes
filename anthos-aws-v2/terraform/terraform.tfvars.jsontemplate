@@ -1,0 +1,16 @@
+{
+  "owner": "${OWNER}",
+  "region": "${AWS_REGION}",
+  "dev_workspace": "${AWS_DEV_WORKSPACE}",
+  "gcp_p4sa_email_prefix": "${GCP_P4SA_EMAIL_PREFIX}",
+  "gaia_service_account":  "service-${PROJECT_NUMBER}@gcp-sa-gkemulticloud.iam.gserviceaccount.com",
+  "extra_ssh_cidr_blocks": ["0.0.0.0/0"],
+  "subnet_availability_zones": [
+    "${AWS_ZONE_1}",
+    "${AWS_ZONE_2}",
+    "${AWS_ZONE_3}"
+  ],
+  "ssh_private_key_path": "${AWS_SSH_PRIVATE_KEY_PATH}",
+  "ssh_public_key": "${AWS_SSH_PUBLIC_KEY}",
+  "create_proxy": "${CREATE_PROXY}"
+}
