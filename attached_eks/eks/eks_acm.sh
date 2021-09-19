@@ -44,7 +44,7 @@ is_deployment_ready() {
 
 
 # Get kubeconfig file
-gsutil cp -r gs://$PROJECT_ID/kubeconfig/kubeconfig_$EKS_CLUSTER kubeconfig_$EKS_CLUSTER
+#gsutil cp -r gs://$PROJECT_ID/kubeconfig/kubeconfig_$EKS_CLUSTER kubeconfig_$EKS_CLUSTER
 
 # Get ConfigManagement Operator YAML
 gsutil cp gs://config-management-release/released/latest/config-management-operator.yaml config-management-operator_$EKS_CLUSTER.yaml
