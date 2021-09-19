@@ -1,5 +1,5 @@
-PROJECT_ID=$(gcloud config get-value project)
-AWS_REGION=us-east-1
+export PROJECT_ID=$(gcloud config get-value project)
+export AWS_REGION=us-east-1
 envsubst < "./terraform.tfvars.jsontemplate" >  "terraform.tfvars.json"
 set -e 
 echo "enter AWS mfa token:"
