@@ -17,6 +17,15 @@
 echo "Copying EKS clusters' kubeconfig files to GCS..."
 gsutil cp -r kubeconfig_$EKS gs://$PROJECT_ID/kubeconfig/kubeconfig_$EKS
 
+export AWS_AUTHENTICATOR_INSTALLED=`which aws-iam-authenticator`
+if [[ ${AWS_AUTHENTICATOR_INSTALLED} ]]; then
+  title_no_wait "aws-iam-authenticator is already installed."
+else
+  curl -o $HOME/.local/bin/aws-iam-authenticator https://amazon-eks.s3.us-west-2.amazonaws.com/1.19.6/2021-01-05/bin/linux/amd64/aws-iam-authenticator
+  chmod +x /$HOME/.local/bin/aws-iam-authenticator
+  aws-iam-authenticator version
+fi
+
 # Create KSA and token
 kubectl --kubeconfig=kubeconfig_$EKS apply -f - <<EOF
 apiVersion: v1
