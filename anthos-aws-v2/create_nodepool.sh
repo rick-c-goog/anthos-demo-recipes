@@ -1,4 +1,4 @@
-NODEPOOL_NAME=aws-v2-nodepool 
+export NODEPOOL_NAME=aws-v2-nodepool 
 source ./aws-resources.sh
 gcloud alpha container aws node-pools create $NODEPOOL_NAME \
   --cluster=$CLUSTER_NAME --instance-type=t3.medium \
