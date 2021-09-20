@@ -4,4 +4,4 @@ References oss tools
 https://github.com/bbhuston/anthos-loves-oss-k8s-projects 
 
 ## Strimzi Kafka 
-https://strimzi.io/docs/operators/in-development/quickstart.html 
+https://strimzi.io/docs/operators/in-development/quickstart.html

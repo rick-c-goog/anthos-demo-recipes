@@ -1,7 +1,16 @@
 # anthos attached EKS cluster
 Steps:
+
+MFA token pre-requisites:
+check $HOME/aws-sts.sh and append the following variable defined:
+export AWS_ACCESS_KEY_ID=$ACCESS
+export AWS_SECRET_ACCESS_KEY=$SECRET
+export AWS_SESSION_TOKEN=$SESSION
+
 1. check create_eks.sh parameters and variables
+
 2. ./create_eks.sh, will prompt for MFA token if mfa required
+
 3. If there is error after the cluster creation,
 Unable to connect to the server: dial tcp 44.199.7.55:443: connect: connection timed out
 simply re-run the script
